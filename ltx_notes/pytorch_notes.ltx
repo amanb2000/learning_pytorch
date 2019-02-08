@@ -1,0 +1,57 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\definecolor{dkgreen}{rgb}{0, 0.6, 0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58, 0, 0.82}
+\begin{document}
+
+\title{PyTorch Notes}
+\author{Aman Bhargava}
+\date{\today}
+\maketitle
+
+\section{Torch Tensors and Numpy Arrays}
+
+Meant to be very similar, torch tensors are built off of numpy arrays.
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{lstlisting}
+n = np.array([2, 3])
+t = torch.from_numpy(n)
+print(n)
+print(t)
+
+>>[2 3]
+>>2
+>>3
+>>[torch.longTensor of size 2]
+
+\end{lstlisting}
+
+\section{Datasets in PyTorch}
+
+\paragraph{Epoch} = one pass of entire dataset.
+\paragraph{Batch} = subset of training set passed through the model at a time.
+\paragraph{Iteration} = single pass of a batch.
+
+
+\end{document}
