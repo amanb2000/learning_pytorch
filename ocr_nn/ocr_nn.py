@@ -63,9 +63,9 @@ def test_model(simple_rick, testor_y, testor_X, tensor_y, tensor_X):
 		if ind == testor_y[i]:
 			correct += 1
 
-	print("The final accuracy on validation set was: ",correct/total)
+	# print("The final accuracy on validation set was: ",correct/total)
 	validation_accuracy = correct/total
-	print("Now testing on Training Set: ")
+	# print("Now testing on Training Set: ")
 	total = 0
 	correct = 0
 
@@ -76,7 +76,7 @@ def test_model(simple_rick, testor_y, testor_X, tensor_y, tensor_X):
 		if ind == tensor_y[i]:
 			correct += 1
 
-	print("The final accuracy on training set was: ",correct/total)
+	# print("The final accuracy on training set was: ",correct/total)
 	train_accuracy = correct/total
 
 	return [validation_accuracy, train_accuracy]
@@ -102,7 +102,7 @@ learning_rate = 0.001
 
 optimizer = torch.optim.SGD(simple_rick.parameters(), lr=learning_rate, nesterov=True, momentum = 0.9, dampening = 0)
 
-num_epochs = 100
+num_epochs =  5000
 
 train_loss = []
 test_loss = []
@@ -120,14 +120,18 @@ for epoch in range(num_epochs):
 
 	simple_rick.eval()
 	train_loss.append(float(loss.data))
-	print("=========="+str(epoch)+"==========")
-	print("Loss: ",float(loss))
 
 
 	test_results = test_model(simple_rick, testor_y, testor_X, tensor_y, tensor_X)
 
 	train_accuracy.append(test_results[1])
 	test_accuracy.append(test_results[0])
+
+	if epoch % 100 == 0:
+		print("=========="+str(epoch)+"==========")
+		print("Loss: ",float(loss))
+		print("Test Accuracy: ",test_results[0])
+		print("Train Accuracy: ",test_results[1])
 
 print("Displaying loss over time...")
 plt.plot(train_loss, label='Training Loss')
