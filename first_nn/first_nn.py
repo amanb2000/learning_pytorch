@@ -112,7 +112,8 @@ for epoch in range(num_epochs):
 	train_y_var = Variable(train_y)
 
 	pred_y = model(train_x_var)
-
+	print(pred_y)
+	print(train_y_var)
 	loss = loss_fn(pred_y, train_y_var)
 	loss.backward()
 	optimizer.step()
